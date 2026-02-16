@@ -35,4 +35,4 @@ jobs:
         run: echo "✅ Workflow completed successfully!"
       
       - name: Access secret
-        run: echo "Secret length: ${#{{ secrets.TEST_SECRET }}}"
+        run: echo "Secret is masked in logs"
