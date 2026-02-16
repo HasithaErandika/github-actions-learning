@@ -36,5 +36,5 @@ jobs:
 
         #This is the commit msg
 
-      - name: Access secret
-        run: echo "Secret length: ${#{{ secrets.TEST_SECRET }}}"
+      # - name: Access secret
+      #   run: echo "Secret length: ${#{{ secrets.TEST_SECRET }}}"
