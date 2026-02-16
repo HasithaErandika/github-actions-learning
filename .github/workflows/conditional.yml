@@ -1,0 +1,30 @@
+name: Conditional Execution
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-check:
+    name: Check Deployment Conditions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Branch Information
+        run: |
+          echo "Current branch ref: ${{ github.ref }}"
+          echo "Event name: ${{ github.event_name }}"
+
+      - name: Run on all branches
+        run: echo "This step runs on every push!"
+
+      - name: Deploy (main only)
+        if: github.ref == 'refs/heads/main'
+        run: echo "Deploying to production..."
+
+      - name: Skip on main (develop only)
+        if: github.ref != 'refs/heads/main'
+        run: echo "Running development tests..."
